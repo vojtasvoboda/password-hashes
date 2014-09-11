@@ -29,11 +29,19 @@ if ($password) {
         <meta charset="utf-8">
         <title>Password Hashed</title>
         <style>
-            * { padding: 0; margin: 0; }
-            body, input { font-family: Consolas, 'Liberation Mono', Courier, monospace; font-size: 18px; }
-            #wrapper { margin: 0 auto; width: 920px; border: 1px solid #aaa; padding: 0 20px 30px; }
-            #p { font-size: 140%; padding: 5px 10px; width: 400px; }
-            #submit { display: block; width: 150px; height: 40px; }
+            /* reset */
+            html, body, h1, form, table, div, span { margin: 0; padding: 0; border: 0; font-size: 100%; font: inherit; vertical-align: baseline; }
+            table { border-collapse: collapse; border-spacing: 0; }
+            hr { display: block; height: 1px; border: 0; border-top: 1px solid #ccc; margin: 1em 0; padding: 0; }
+            input, select { vertical-align: middle; }
+            body { font: 13px/1.231 sans-serif; *font-size: small; } /* Hack retained to preserve specificity */
+            select, input, textarea, button { font: 99% sans-serif; }
+            /* own code */
+            body { font-family: Consolas, 'Liberation Mono', Courier, monospace; font-size: 18px; margin-top: 20px; }
+            #wrapper { margin: 0 auto; width: 920px; border: 1px solid #aaa; padding: 20px; }
+            h1 { font-size: 200%; font-weight: bold; margin-bottom: 15px; }
+            #p { font-size: 140%; padding: 8px 10px 5px 10px; width: 400px; margin-bottom: 10px; font-family: Consolas, 'Liberation Mono', Courier, monospace; }
+            #submit { display: block; width: 150px; height: 40px; margin-bottom: 15px; }
             .hashes { margin-top: 15px; border: 1px solid #aaa; }
             tr { text-align: left; }
             th, td { padding: 8px 8px 4px; }
