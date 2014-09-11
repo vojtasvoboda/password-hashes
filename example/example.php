@@ -60,7 +60,7 @@ if (isset($_GET['p'])) {
     </head>
     <body>
         <div id="wrapper">
-            <h1>Password Hasher</h1>
+            <h1>Password Hasher 1.0</h1>
             <form action="" method="get">
                 <label for="p">Please enter a password:</label>
                 <input type="text" name="p" autofocus required id="password" placeholder="Type password (max 128 chars)" value="<?=$password;?>" />
