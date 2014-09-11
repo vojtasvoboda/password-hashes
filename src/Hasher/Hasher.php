@@ -45,4 +45,37 @@ class Hasher
         return $this->password;
     }
 
+    /**
+     * Return all known hashes
+     *
+     * @return array
+     */
+    public function getAllHashes()
+    {
+        // our cleaned password
+        $password = $this->getPassword();
+
+        // available algorithms
+        $algorithms = $this->getAvailableAlgorithms();
+
+        // calculate hashes
+        $hashes = array();
+        foreach($algorithms as $algorithm) {
+            $hash = hash($algorithm, $password, false);
+            $hashes[] = array('title' => $algorithm, 'hash' => $hash);
+        }
+
+        return $hashes;
+    }
+
+    /**
+     * Returns available hash algorithms
+     *
+     * @return array
+     */
+    public function getAvailableAlgorithms()
+    {
+        return hash_algos();
+    }
+
 }
