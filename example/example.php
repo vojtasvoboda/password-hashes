@@ -71,9 +71,9 @@ if (isset($_GET['p'])) {
             <div class="clr"></div>
             <?php if(!empty($hashes)) {
             echo '<table class="hashes" rules="all">';
-                foreach($hashes as $hash) {
+                foreach($hashes as $algorithm => $hash) {
                     echo '<tr class="hash">';
-                    echo '<th class="title">' . $hash['title'] . '</th><td><input onClick="this.setSelectionRange(0, this.value.length)" value="' . $hash['hash'] . '" /></td>';
+                    echo '<th class="title">' . $algorithm . '</th><td><input onClick="this.setSelectionRange(0, this.value.length)" value="' . $hash . '" /></td>';
                     echo '</tr>';
                 }
             echo '</table>';

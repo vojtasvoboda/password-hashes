@@ -19,20 +19,20 @@ class Hasher
      */
     public function __construct($password, $maxLength = 128)
     {
-        $this->password = $this->cleanPassword($password, $maxLength);
+        $this->setPassword($password, $maxLength);
     }
 
     /**
-     * Clean inserted password
+     * Set password
      *
      * @param $password
-     * @param $maxLength
      *
-     * @return string
+     * @param int $maxLength
      */
-    private function cleanPassword($password, $maxLength)
+    public function setPassword($password, $maxLength = 128)
     {
-        return htmlspecialchars(substr($password, 0, $maxLength));
+        $pass = htmlspecialchars(substr($password, 0, $maxLength));
+        $this->password = $pass;
     }
 
     /**
@@ -61,11 +61,24 @@ class Hasher
         // calculate hashes
         $hashes = array();
         foreach($algorithms as $algorithm) {
-            $hash = hash($algorithm, $password, false);
-            $hashes[] = array('title' => $algorithm, 'hash' => $hash);
+            $hash = $this->getHash($algorithm, $password);
+            $hashes[$algorithm] = $hash;
         }
 
         return $hashes;
+    }
+
+    /**
+     * Return hash by defined algorithm
+     *
+     * @param $algorithm
+     * @param $password
+     *
+     * @return string
+     */
+    private function getHash($algorithm, $password)
+    {
+        return hash($algorithm, $password, false);
     }
 
     /**
@@ -76,6 +89,38 @@ class Hasher
     public function getAvailableAlgorithms()
     {
         return hash_algos();
+    }
+
+    /**
+     * Get SHA-1 helper
+     *
+     * @param $password
+     *
+     * @return string
+     */
+    public function getSha1($password = null)
+    {
+        if ($password) {
+            $this->setPassword($password);
+        }
+
+        return $this->getHash('sha1', $password);
+    }
+
+    /**
+     * Get MD5 hash
+     *
+     * @param $password
+     *
+     * @return string
+     */
+    public function getMd5($password = null)
+    {
+        if ($password) {
+            $this->setPassword($password);
+        }
+
+        return $this->getHash('md5', $password);
     }
 
 }
