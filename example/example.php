@@ -37,6 +37,7 @@ if ($password) {
             body { font: 13px/1.231 sans-serif; *font-size: small; } /* Hack retained to preserve specificity */
             select, input, textarea, button { font: 99% sans-serif; }
             /* own code */
+            html { overflow-y: scroll; }
             body { font-family: Consolas, 'Liberation Mono', Courier, monospace; font-size: 18px; margin-top: 20px; margin-bottom: 20px; }
             #wrapper { margin: 0 auto; width: 800px; border: 1px solid #666; padding: 20px 30px; }
             h1 { font-size: 240%; font-weight: bold; margin-bottom: 15px; }
@@ -45,7 +46,7 @@ if ($password) {
             #submit { display: block; width: 150px; height: 40px; margin-bottom: 15px; padding: 0; vertical-align: bottom; }
             #submit:hover { cursor: pointer; }
             .hashes { margin-top: 15px; border: 1px solid #aaa; }
-            .hashes input { width: 660px; border: 0; }
+            .hashes input { width: 660px; border: 0; outline: none; }
             tr { text-align: left; }
             th, td { padding: 8px 8px 4px; }
             .clr { float: none; width: 100%; height: 1px; clear: both; }
@@ -62,7 +63,6 @@ if ($password) {
         <div id="wrapper">
             <h1>Password Hasher</h1>
             <form action="" method="get">
-                <label for="p">Please enter a password:</label>
                 <input type="text" name="p" id="password" placeholder="Password max 128 characters." value="<?=$password;?>" />
                 <button type="submit" id="submit">Shake it baby!</button>
             </form>
@@ -71,7 +71,7 @@ if ($password) {
             echo '<table class="hashes" rules="all">';
                 foreach($hashes as $hash) {
                     echo '<tr class="hash">';
-                    echo '<th class="title">' . $hash['title'] . '</th><td><input value="' . $hash['hash'] . '" /></td>';
+                    echo '<th class="title">' . $hash['title'] . '</th><td><input onClick="this.setSelectionRange(0, this.value.length)" value="' . $hash['hash'] . '" /></td>';
                     echo '</tr>';
                 }
             echo '</table>';
