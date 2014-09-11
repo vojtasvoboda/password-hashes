@@ -2,17 +2,15 @@
 
 require '../src/Hasher/Hasher.php';
 
-// gets hash (max 128 chars)
-$password = isset($_GET['p']) ? $_GET['p'] : false;
-
 // init
 $hashes = array();
+$password = '';
 
 // if we have password
-if ($password) {
+if (isset($_GET['p'])) {
 
     // new Hasher
-    $hasher = new Hasher($password);
+    $hasher = new Hasher($_GET['p']);
 
     // get cleaned password for HTML input
     $password = $hasher->getPassword();
@@ -30,32 +28,33 @@ if ($password) {
         <title>Password Hashed</title>
         <style>
             /* reset */
-            html, body, h1, form, table, div, span { margin: 0; padding: 0; border: 0; font-size: 100%; font: inherit; vertical-align: baseline; }
+            html, body, h1, form, table, div, span, input, button { margin: 0; padding: 0; border: 0; font-size: 100%; font: inherit; vertical-align: baseline; }
             table { border-collapse: collapse; border-spacing: 0; }
             hr { display: block; height: 1px; border: 0; border-top: 1px solid #ccc; margin: 1em 0; padding: 0; }
             input, select { vertical-align: middle; }
-            body { font: 13px/1.231 sans-serif; *font-size: small; } /* Hack retained to preserve specificity */
+            body { font: 13px/1.231 sans-serif; *font-size: small; }
             select, input, textarea, button { font: 99% sans-serif; }
-            /* own code */
+            button:hover { cursor: pointer; }
+            /* own code mobile first */
             html { overflow-y: scroll; }
-            body { font-family: Consolas, 'Liberation Mono', Courier, monospace; font-size: 18px; margin-top: 20px; margin-bottom: 20px; }
-            #wrapper { margin: 0 auto; width: 800px; border: 1px solid #666; padding: 20px 30px; }
-            h1 { font-size: 240%; font-weight: bold; margin-bottom: 15px; }
-            label { display: block; margin-bottom: 5px; }
-            #password { font-size: 140%; padding: 8px 10px 5px 10px; width: 600px; margin-bottom: 10px; font-family: Consolas, 'Liberation Mono', Courier, monospace; }
-            #submit { display: block; width: 150px; height: 40px; margin-bottom: 15px; padding: 0; vertical-align: bottom; }
-            #submit:hover { cursor: pointer; }
-            .hashes { margin-top: 15px; border: 1px solid #aaa; }
-            .hashes input { width: 660px; border: 0; outline: none; }
-            tr { text-align: left; }
-            th, td { padding: 8px 8px 4px; }
+            body { font-size: 18px; }
+            body, form input, table input { font-family: Consolas, 'Liberation Mono', Courier, monospace; }
             .clr { float: none; width: 100%; height: 1px; clear: both; }
-            @media (max-width: 860px) {
-                body { margin-top: 0; }
-                #wrapper { margin: 0; border: 0; padding: 10px; }
-                #password { width: 440px; }
-                .hashes { width: 465px; }
-                .hashes input { width: 100%; }
+            #wrapper { margin: 10px; position: relative; }
+            h1 { font-size: 240%; font-weight: bold; margin-bottom: 10px; }
+            label { display: none; }
+            form input { display: block; border: 1px solid #aaa; }
+            button { display: block; margin-bottom: 20px; padding: 10px 10px 5px; background-color: #ccc; border: 1px solid #aaa; vertical-align: middle; font-family: Consolas, 'Liberation Mono', Courier, monospace; }
+            #password { font-size: 140%; width: 100%; padding: 3px 0; margin-bottom: 10px; }
+            table { width: 100%; border: 1px solid #aaa; }
+            table th { text-align: left; font-weight: bold; width: 100px; padding: 4px 4px 0; border: 1px solid #aaa; }
+            table td { padding: 2px 4px; border: 1px solid #aaa; }
+            table input { width: 100%; outline: none; padding: 4px 0 0 0; }
+            @media (min-width: 860px) {
+                body { margin-top: 15px; margin-bottom: 15px; }
+                #wrapper { margin: 0 auto; width: 800px; border: 1px solid #999; padding: 20px; }
+                h1 { font-size: 280%; }
+                #password { padding: 6px 8px 4px; width: 782px; }
             }
         </style>
     </head>
@@ -63,7 +62,8 @@ if ($password) {
         <div id="wrapper">
             <h1>Password Hasher</h1>
             <form action="" method="get">
-                <input type="text" name="p" id="password" placeholder="Password max 128 characters." value="<?=$password;?>" />
+                <label for="p">Please enter a password:</label>
+                <input type="text" name="p" autofocus required id="password" placeholder="Type password (max 128 chars)" value="<?=$password;?>" />
                 <button type="submit" id="submit">Shake it baby!</button>
             </form>
             <div class="clr"></div>
