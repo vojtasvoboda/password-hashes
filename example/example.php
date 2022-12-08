@@ -25,7 +25,7 @@ if (isset($_GET['p'])) {
 <html class="no-js" lang="cs">
     <head>
         <meta charset="utf-8">
-        <title>Password Hashed</title>
+        <title>Password Hasher 1.0</title>
         <style>
             /* reset */
             html, body, h1, form, table, div, span, input, button { margin: 0; padding: 0; border: 0; font-size: 100%; font: inherit; vertical-align: baseline; }
