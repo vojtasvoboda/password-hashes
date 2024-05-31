@@ -1,6 +1,6 @@
 # Password hasher
 
-Showcase of hashing passwords. Available at [http://hasher.7ka.cz/](http://hasher.7ka.cz/)
+Showcase of hashing passwords. Available at [https://hasher.7ka.cz/](https://hasher.7ka.cz/)
 
 ## Changelog
 
