@@ -8,7 +8,6 @@ $password = '';
 
 // if we have password
 if (isset($_GET['p'])) {
-
     // new Hasher
     $hasher = new Hasher($_GET['p']);
 
@@ -17,7 +16,6 @@ if (isset($_GET['p'])) {
 
     // get all known hashes
     $hashes = $hasher->getAllHashes();
-
 }
 
 ?>
@@ -61,17 +59,6 @@ if (isset($_GET['p'])) {
         </style>
     </head>
     <body>
-
-        <!-- Google Tag Manager -->
-        <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-KJKGRTD"
-        height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-        <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-        '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-        })(window,document,'script','dataLayer','GTM-KJKGRTD');</script>
-        <!-- End Google Tag Manager -->
-
         <div id="wrapper">
             <h1>Password Hasher 1.0</h1>
             <form action="" method="get">
